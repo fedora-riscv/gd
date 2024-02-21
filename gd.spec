@@ -33,9 +33,7 @@ Source0:       https://github.com/libgd/libgd/releases/download/gd-%{version}/li
 Patch0:        libgd-flip.patch
 # Missing header see https://github.com/libgd/libgd/pull/766
 Patch1:        libgd-iostream.patch
-%ifarch riscv64
 Patch2:        skip_error_test.patch
-%endif
 
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
@@ -122,6 +120,9 @@ files for gd, a graphics library for creating PNG and JPEG graphics.
 %setup -q -n libgd-%{version}%{?prever:-%{prever}}
 %patch0 -p1
 %patch1 -p1
+%ifarch riscv64
+%patch2 -p1
+%endif
 
 : $(perl config/getver.pl)
 
