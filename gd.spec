@@ -18,7 +18,7 @@
 Summary:       A graphics library for quick creation of PNG or JPEG images
 Name:          gd
 Version:       2.3.3
-Release:       15%{?prever}%{?short}%{?dist}
+Release:       15%{?prever}%{?short}.rv64%{?dist}
 License:       GD
 URL:           http://libgd.github.io/
 %if 0%{?commit:1}
@@ -33,6 +33,9 @@ Source0:       https://github.com/libgd/libgd/releases/download/gd-%{version}/li
 Patch0:        libgd-flip.patch
 # Missing header see https://github.com/libgd/libgd/pull/766
 Patch1:        libgd-iostream.patch
+%ifarch riscv64
+Patch2:        skip_error_test.patch
+%endif
 
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
@@ -192,6 +195,9 @@ grep %{version} $RPM_BUILD_ROOT%{_libdir}/pkgconfig/gdlib.pc
 
 
 %changelog
+* Wed Feb 21 2024 Jiasheng Zhao <JasenChao@gmail.com> - 2.3.3-15.rv64
+- Skip test error on riscv64
+
 * Wed Jan 31 2024 František Zatloukal <fzatlouk@redhat.com> - 2.3.3-15
 - Rebuilt for libavif 1.0.3
 

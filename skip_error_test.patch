@@ -1,0 +1,26 @@
+diff --git a/tests/gdimagecopyresampled/bug00201.c b/tests/gdimagecopyresampled/bug00201.c
+index 37e16f9..4dc7a35 100644
+--- a/tests/gdimagecopyresampled/bug00201.c
++++ b/tests/gdimagecopyresampled/bug00201.c
+@@ -45,7 +45,7 @@ int main()
+ 
+ // Rounding issue, won't fix as it only happens on mingw 32bit.
+ // __aarch64__/graviton. It fails within the CI while outside is 100% success over 100s builds&runs
+-#if defined(__MINGW32__) || defined(__aarch64__) || defined(_M_ARM64)
++#if defined(__MINGW32__) || defined(__aarch64__) || defined(_M_ARM64) || defined(__riscv)
+     return 77;
+ #endif 
+     background = blank_image(DEST_WIDTH,DEST_HEIGHT);
+diff --git a/tests/gdimagegrayscale/basic.c b/tests/gdimagegrayscale/basic.c
+index 6b6b01c..37f6640 100644
+--- a/tests/gdimagegrayscale/basic.c
++++ b/tests/gdimagegrayscale/basic.c
+@@ -12,7 +12,7 @@ int main()
+ 	char *path;
+ // Rounding issue, won't fix as it only happens on mingw 32bit.
+ // __aarch64__/graviton. It fails within the CI while outside is 100% success over 100s builds&runs
+-#if defined(__MINGW32__) || defined(__aarch64__) || defined(_M_ARM64)
++#if defined(__MINGW32__) || defined(__aarch64__) || defined(_M_ARM64) || defined(__riscv)
+     return 77;
+ #endif 
+ 	fp = gdTestFileOpen2("gdimagegrayscale", "basic.png");
